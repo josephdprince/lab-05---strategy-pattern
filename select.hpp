@@ -49,7 +49,7 @@ class Select_Contains : public Select_Column {
 	}
 
 	virtual bool select(const std::string& s) const {
-		if (rowContent.find(s) != string::npos) 
+		if (rowContent.find(s) != std::string::npos) 
 			return true;
 		else
 			return false;
