@@ -55,11 +55,8 @@ void Spreadsheet::print_selection(std::ostream& out) const {
     } else {
 	for(int i = 0; i < rows; i++) {
 	    if(select->select(this, i)) {
-		for(int j = 0; j < rows; j++) {
-		    for(int k = 0; k < cols; k++) {
-			out << data.at(j).at(k) << " ";
-		    }
-		    out << std::endl;
+		for(int j = 0; j < cols; j++) {
+		    out << data.at(i).at(j) << " ";
 		}
 		out << std::endl;
 	    }
