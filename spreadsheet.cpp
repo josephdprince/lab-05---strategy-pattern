@@ -42,9 +42,9 @@ int Spreadsheet::get_column_by_name(const std::string& name) const
 }
 
 void Spreadsheet::print_selection(std::ostream& out) const {
+    int rows = data.size();
+    int cols = data.at(0).size();
     if(select == nullptr) {
-    	int rows = data.size();
-	int cols = data.at(0).size();
 	for(int i = 0; i < rows; i++) {
 	    for(int j = 0; j < cols; j++) {
 	 	out << data.at(i).at(j) << " ";
@@ -52,5 +52,17 @@ void Spreadsheet::print_selection(std::ostream& out) const {
 	    out << std::endl;
 	}
 	out << std::endl;
+    } else {
+	for(int i = 0; i < rows; i++) {
+	    if(select->select(this, i)) {
+		for(int j = 0; j < rows; j++) {
+		    for(int k = 0; k < cols; k++) {
+			out << data.at(j).at(k) << " ";
+		    }
+		    out << std::endl;
+		}
+		out << std::endl;
+	    }
+	}
     }
 }
