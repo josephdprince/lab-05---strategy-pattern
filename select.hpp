@@ -38,4 +38,22 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
+class Select_Contains : public Select_Column {
+    private:
+	Spreadsheet* sheet;
+	std::string columnName;
+	std::string rowContent;
+    public:
+	Select_Contains(Spreadsheet* sheet, std::string columnName, std::string rowContent) : Select_Column(sheet, columnName){
+		this->rowContent = rowContent;
+	}
+
+	virtual bool select(const std::string& s) const {
+		if (s == rowContent) 
+			return true;
+		else
+			return false;
+	}
+};
+
 #endif //__SELECT_HPP__
