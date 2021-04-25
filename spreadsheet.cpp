@@ -51,7 +51,6 @@ void Spreadsheet::print_selection(std::ostream& out) const {
 	    }
 	    out << std::endl;
 	}
-	out << std::endl;
     } else {
 	for(int i = 0; i < rows; i++) {
 	    if(select->select(this, i)) {
