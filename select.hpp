@@ -65,7 +65,7 @@ class Select_Not : public Select {
 	    this->content = content;
 	}
 	
-	virtual bool select(Spreadsheet* sheet, int row) const {
+	virtual bool select(const Spreadsheet* sheet, int row) const {
 	    return !content->select(sheet, row);
 	}
 };

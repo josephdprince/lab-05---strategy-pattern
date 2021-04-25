@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
          new Select_And(
              new Select_Contains(&sheet,"Last","Dole"),
              new Select_Not(
-                 new Select_Contains(&sheet,"First","v")));
+                 new Select_Contains(&sheet,"First","v"))));
     
     sheet.print_selection(std::cout);
     std::cout << std::endl;
