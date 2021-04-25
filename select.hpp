@@ -68,7 +68,7 @@ class Select_Not : public Select {
 	virtual bool select(Spreadsheet* sheet, int row) const {
 	    return !content->select(sheet, row);
 	}
-}
+};
 
 class Select_And : public Select {
     private:
