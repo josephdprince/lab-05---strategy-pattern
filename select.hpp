@@ -56,6 +56,20 @@ class Select_Contains : public Select_Column {
 	}
 };
 
+
+class Select_Not : public Select {
+    private:
+	Select* content;
+    public:
+	Select_Not(Select* content) {
+	    this->content = content;
+	}
+	
+	virtual bool select(Spreadsheet* sheet, int row) const {
+	    return !content->select(sheet, row);
+	}
+}
+
 class Select_And : public Select {
     private:
 	Select* obj1;
@@ -70,5 +84,6 @@ class Select_And : public Select {
 		return obj1->select(sheet, row) && obj2->select(sheet, row);
 	}
 };
+
 
 #endif //__SELECT_HPP__
