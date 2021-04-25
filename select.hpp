@@ -48,6 +48,8 @@ class Select_Contains : public Select_Column {
 		this->rowContent = rowContent;
 	}
 
+	virtual ~Select_Contains() {}
+
 	virtual bool select(const std::string& s) const {
 		if (s.find(rowContent) != std::string::npos) 
 			return true;
@@ -65,6 +67,10 @@ class Select_Not : public Select {
 	    this->content = content;
 	}
 	
+	virtual ~Select_Not() {
+		delete this->content;
+	}
+	
 	virtual bool select(const Spreadsheet* sheet, int row) const {
 	    return !content->select(sheet, row);
 	}
@@ -78,6 +84,11 @@ class Select_And : public Select {
 	Select_And(Select* obj1, Select* obj2) {
 		this->obj1 = obj1;
 		this->obj2 = obj2;	
+	}
+
+	virtual ~Select_And() {
+		delete this->obj1;
+		delete this->obj2;
 	}
 
 	virtual bool select(const Spreadsheet* sheet, int row) const{
@@ -94,6 +105,11 @@ class Select_Or : public Select {
 		this->obj1 = obj1;
 		this->obj2 = obj2;
 
+	}
+
+	virtual ~Select_Or() {
+		delete this->obj1;
+		delete this->obj2;
 	}
 
 	virtual bool select(const Spreadsheet* sheet, int row) const {
