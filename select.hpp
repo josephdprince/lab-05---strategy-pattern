@@ -85,5 +85,19 @@ class Select_And : public Select {
 	}
 };
 
+class Select_Or : public Select {
+    private:
+	Select* obj1;
+	Select* obj2;
+    public:
+	Select_Or(Select* obj1, Select* obj2) {
+		this->obj1 = obj1;
+		this->obj2 = obj2;
 
+	}
+
+	virtual bool select(const Spreadsheet* sheet, int row) const {
+		return obj1->select(sheet, row) || obj2->select(sheet, row);
+	}
+};
 #endif //__SELECT_HPP__
