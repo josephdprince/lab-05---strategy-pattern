@@ -1,6 +1,6 @@
 #ifndef __SELECT_HPP__
 #define __SELECT_HPP__
-
+#include <iostream>
 #include <cstring>
 
 class Select
@@ -49,11 +49,41 @@ class Select_Contains : public Select_Column {
 	}
 
 	virtual bool select(const std::string& s) const {
-		if (rowContent.find(s) != std::string::npos) 
+		if (s.find(rowContent) != std::string::npos) 
 			return true;
 		else
 			return false;
 	}
 };
+
+
+class Select_Not : public Select {
+    private:
+	Select* content;
+    public:
+	Select_Not(Select* content) {
+	    this->content = content;
+	}
+	
+	virtual bool select(Spreadsheet* sheet, int row) const {
+	    return !content->select(sheet, row);
+	}
+};
+
+class Select_And : public Select {
+    private:
+	Select* obj1;
+	Select* obj2;
+    public:
+	Select_And(Select* obj1, Select* obj2) {
+		this->obj1 = obj1;
+		this->obj2 = obj2;	
+	}
+
+	virtual bool select(const Spreadsheet* sheet, int row) const{
+		return obj1->select(sheet, row) && obj2->select(sheet, row);
+	}
+};
+
 
 #endif //__SELECT_HPP__
