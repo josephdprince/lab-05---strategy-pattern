@@ -2,10 +2,6 @@
 #include "select.hpp"
 
 #include <iostream>
-nclude "spreadsheet.hpp"
-#include "select.hpp"
-
-#include <iostream>
 
 int main(int argc, char* argv[])
 {
