@@ -35,15 +35,9 @@ int main(int argc, char* argv[])
     sheet.print_selection(std::cout);
     std::cout << std::endl;
 
-<<<<<<< HEAD
-    //Sample usage 3
-    sheet.set_selection(
-     	new Select_Or(
-=======
     // Sample usage 3
      sheet.set_selection(
          new Select_Or(
->>>>>>> 17bb7cf4a2444f8dae485ff94ba12126e84581d6
              new Select_Contains(&sheet,"First","Amanda"),
              new Select_Or(
                  new Select_Contains(&sheet,"Last","on"),
