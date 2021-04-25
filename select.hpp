@@ -56,4 +56,17 @@ class Select_Contains : public Select_Column {
 	}
 };
 
+class Select_Not : public Select {
+    private:
+	Select* content;
+    public:
+	Select_Not(Select* content) {
+	    this->content = content;
+	}
+	
+	virtual bool select(Spreadsheet* sheet, int row) const {
+	    return !content->select(sheet, row);
+	}
+}
+
 #endif //__SELECT_HPP__
