@@ -1,6 +1,7 @@
 #include "spreadsheet.hpp"
 
 #include "gtest/gtest.h"
+#include "testing.cpp"
 
 
 int main(int argc, char **argv) {
