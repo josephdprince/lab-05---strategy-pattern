@@ -119,6 +119,18 @@ TEST(ContainsTest, edgeCaseContains) {
 	EXPECT_EQ(out.str(), "");
 }
 
+TEST(ContainsTest, invalidColumnName) {
+        std::stringstream out;
+        Spreadsheet sheet;
+        sheet.set_column_names({"First", "Last", "Age", "Major"});
+        sheet.add_row({"Brian","Becker","21","computer science"});
+        sheet.add_row({"Carol","Conners","21","computer science"});
+
+        sheet.set_selection(new Select_Contains(&sheet, "Las", "Er"));
+        sheet.print_selection(out);
+        EXPECT_EQ(out.str(), "");
+}
+
 TEST(ContainsTest, duplicateCols) {
         std::stringstream out;
         Spreadsheet sheet;
@@ -130,5 +142,4 @@ TEST(ContainsTest, duplicateCols) {
         sheet.print_selection(out);
         EXPECT_EQ(out.str(), "Duplicate column names exist");
 }
-
 #endif
