@@ -26,7 +26,7 @@ protected:
 public:
     Select_Column(const Spreadsheet* sheet, const std::string& name)
     {
-        column = sheet->get_column_by_name(name);
+	column = sheet->get_column_by_name(name);
     }
 
     virtual bool select(const Spreadsheet* sheet, int row) const

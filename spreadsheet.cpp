@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <unordered_set>
 
 Spreadsheet::~Spreadsheet()
 {
@@ -11,8 +12,8 @@ Spreadsheet::~Spreadsheet()
 
 void Spreadsheet::set_selection(Select* new_select)
 {
-    delete select;
-    select = new_select;
+    	delete select;
+    	select = new_select;
 }
 
 void Spreadsheet::clear()
@@ -25,6 +26,16 @@ void Spreadsheet::clear()
 
 void Spreadsheet::set_column_names(const std::vector<std::string>& names)
 {
+    // check if duplicate column names exist
+    std::unordered_set<std::string> colSet;
+    for(int i = 0; i < names.size(); i++) {
+	if(colSet.find(names.at(i)) != colSet.end()) {
+		std::cout << "Duplicate column names exist" << std::endl;
+		exit(1);
+	} else {
+		colSet.insert(names.at(i));
+	}
+    }
     column_names=names;
 }
 
