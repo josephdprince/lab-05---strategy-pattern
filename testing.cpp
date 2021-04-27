@@ -20,6 +20,20 @@ TEST(NotTest, Notsomeone) {
 	EXPECT_EQ(out.str(), "Amanda Andrews 22 business \n");
 } 
 
+TEST(NotTest, ContainsDoesntExist) {
+        std::ostringstream out;
+        Spreadsheet sheet;
+        sheet.set_column_names({"First", "Last", "Age", "Major"});
+        sheet.add_row({"Amanda","Andrews","22","business"});
+        sheet.add_row({"Brian","Becker","21","computer science"});
+
+        sheet.set_selection( new Select_Not(new Select_Contains(&sheet, "Last", "Prince")));
+        sheet.print_selection(out);
+
+        EXPECT_EQ(out.str(), "Amanda Andrews 22 business \nBrian Becker 21 computer science \n");
+}
+
+
 TEST(NotTest, multiplenots) {
 	std::ostringstream out;
         Spreadsheet sheet;
